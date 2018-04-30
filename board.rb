@@ -14,8 +14,11 @@ class Board
     end
     return nil
   end
+
   def place_ship(ship, coordinates, orientation)
     row = coordinates.split("")[0]
     col = coordinates.split("")[1]
+    ship.coordinates = [row, col]
+    ship.orientation = orientation
   end
 end

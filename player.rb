@@ -7,7 +7,6 @@ class Player
                   Cruiser.new(), Cruiser.new(), 
                   Destroyer.new(), Destroyer.new(),
                   Submarine.new(), Submarine.new(), Submarine.new()]
-    
   end
 end
 
