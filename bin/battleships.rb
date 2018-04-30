@@ -18,9 +18,15 @@ board.display_board
 player_1.fleet.each do |ship|
   puts "Select a start coordinate for your #{ship.name} (ex.: A4)"
   coordinates = gets.strip
-  puts "Select orientation (type H for horizontal or V for vertical"
-  orientation = gets.strip
-  player_1.board.place_ship(ship, coordinates, orientation)
+  orientation = ""
+  if ship.size > 1
+    puts "Select orientation (type H for horizontal or V for vertical"
+    orientation = gets.strip
+  end
+  if player_1.board.validate_placement(ship, coordinates, orientation)
+    player_1.board.place_ship(ship, coordinates, orientation)
+  end
+  board.display_board
 end
 
 
