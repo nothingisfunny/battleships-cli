@@ -9,6 +9,7 @@ puts "Welcome to Battleships!"
 puts "Player 1, place your ships on the board"
 board = Board.new()
 player_1 = Player.new()
+game = Game.new()
 player_1.board = board
 
 #display empty board
@@ -25,9 +26,15 @@ player_1.fleet.each do |ship|
   end
   if player_1.board.validate_placement(ship, coordinates, orientation)
     player_1.board.place_ship(ship, coordinates, orientation)
+  else
+    puts "Invalid placement"
   end
+
   board.display_board
+ 
 end
+
+
 
 
 

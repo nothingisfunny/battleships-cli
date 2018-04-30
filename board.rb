@@ -17,18 +17,18 @@ class Board
   end
 
   def place_ship(ship, coordinates, orientation)
-    row = coordinates.split("")[0] - 1
-    col = coordinates.split("")[1].to_i
+    row = coordinates.split("")[0] 
+    col = coordinates.split("")[1].to_i - 1
     ship.coordinates = [row, col]
     ship.orientation = orientation
     self.grid[row][col] = ship
     if ship.size > 1
-      if ship.orientation = "H"
+      if ship.orientation == "H"
         (ship.size - 1).times do 
           self.grid[row][col + 1] = ship
           col += 1
         end
-      elsif ship.orientation = "V"
+      elsif ship.orientation == "V"
         (ship.size - 1).times do 
           self.grid[row.next][col] = ship
           row = row.next
@@ -38,18 +38,18 @@ class Board
   end
 
   def validate_placement(ship, coordinates, orientation)
-    row = coordinates.split("")[0] - 1
-    col = coordinates.split("")[1].to_i
-    if !self.grid[row][col].empty?
+    row = coordinates.split("")[0] 
+    col = coordinates.split("")[1].to_i - 1
+    if !self.grid[row][col].empty? || self.grid[row][col] == nil
       return false
-    elsif ship.orientation = "H"
+    elsif orientation == "H"
       (ship.size - 1).times do 
         return false if !self.grid[row][col + 1].empty? || self.grid[row][col + 1] == nil
         col += 1
       end
-    elsif ship.orientation = "V"
+    elsif orientation == "V"
       (ship.size - 1).times do 
-        return false if !self.grid[row.next][col].empty? || self.grid[row.next][col] == nil
+        return false if !self.grid[row.next]
         row = row.next
       end
     end
