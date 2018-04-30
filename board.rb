@@ -17,8 +17,8 @@ class Board
   end
 
   def place_ship(ship, coordinates, orientation)
-    row = coordinates.split("")[0] 
-    col = coordinates.split("")[1].to_i - 1
+    row = coordinates[0] 
+    col = coordinates.slice(1, 2).to_i - 1
     ship.coordinates = [row, col]
     ship.orientation = orientation
     self.grid[row][col] = ship
@@ -38,13 +38,13 @@ class Board
   end
 
   def validate_placement(ship, coordinates, orientation)
-    row = coordinates.split("")[0] 
-    col = coordinates.split("")[1].to_i - 1
-    if !self.grid[row][col].empty? || self.grid[row][col] == nil
+    row = coordinates[0] 
+    col = coordinates.slice(1, 2).to_i - 1
+    if self.grid[row][col] == nil || !self.grid[row][col].empty?
       return false
     elsif orientation == "H"
       (ship.size - 1).times do 
-        return false if !self.grid[row][col + 1].empty? || self.grid[row][col + 1] == nil
+        return false if self.grid[row][col + 1] == nil || !self.grid[row][col + 1].empty? 
         col += 1
       end
     elsif orientation == "V"

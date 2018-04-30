@@ -7,32 +7,28 @@ require 'pry'
 
 puts "Welcome to Battleships!"
 puts "Player 1, place your ships on the board"
-board = Board.new()
+board_1 = Board.new()
+board_2 = Board.new()
 player_1 = Player.new()
+player_2 = Player.new()
 game = Game.new()
-player_1.board = board
+game.player_1 = player_1
+game.player_2 = player_2
+player_1.board = board_1
+player_2.board = board_2
 
 #display empty board
-board.display_board
+game.player_1.board.display_board
+game.place_ships(player_1)
 
-#iterate through fleet and prompt user to place each ship
-player_1.fleet.each do |ship|
-  puts "Select a start coordinate for your #{ship.name} (ex.: A4)"
-  coordinates = gets.strip
-  orientation = ""
-  if ship.size > 1
-    puts "Select orientation (type H for horizontal or V for vertical"
-    orientation = gets.strip
-  end
-  if player_1.board.validate_placement(ship, coordinates, orientation)
-    player_1.board.place_ship(ship, coordinates, orientation)
-  else
-    puts "Invalid placement"
-  end
+puts `clear`
 
-  board.display_board
- 
-end
+puts "Player 2, place your ships on the board"
+game.player_2.board.display_board
+game.place_ships(player_2)
+
+
+
 
 
 
